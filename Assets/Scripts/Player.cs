@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float speed= 5.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,23 +16,42 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            Debug.Log("Tao dang di sang trai ne");
-            transform.Translate(-5 * Time.deltaTime, 0, 0);
+            transform.Translate(-speed * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            Debug.Log("Tao dang di sang phai ne");
-            transform.Translate(5 * Time.deltaTime, 0, 0);
+            transform.Translate(speed * Time.deltaTime, 0, 0);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            Debug.Log("Tao dang di len tren ne");
-            transform.Translate(0, 5 * Time.deltaTime, 0);
+            transform.Translate(0, speed * Time.deltaTime, 0);
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            Debug.Log("Tao dang di xuong duoi ne");
-            transform.Translate(0, -5 * Time.deltaTime, 0);
+            transform.Translate(0, -speed * Time.deltaTime, 0);
+        }
+    }
+
+    private void OnCollisionEnter2D (Collision2D collision)
+    {
+        if(collision.gameObject.tag== "Wall")
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.Translate(speed * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.Translate(-speed * Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.Translate(0, -speed * Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.Translate(0, speed * Time.deltaTime, 0);
+        }
         }
     }
 }

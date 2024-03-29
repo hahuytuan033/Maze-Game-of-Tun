@@ -1,2 +1,2 @@
 # Maze-Game-of-Tun
-Đây là con con maze game đơn giản thôi 
+Tớ làm một con mazegame đơn giản thôi nhưng mà cũng khó chơi phết đó 🐵

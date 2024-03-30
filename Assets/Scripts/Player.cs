@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.tag== "Enemies")
         {
-            Debug.Log("Enemy Hit");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         //nhảy ra khỏi tường
         if(collision.gameObject.tag== "Wall")

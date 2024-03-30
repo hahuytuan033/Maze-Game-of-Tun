@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    public static int keys= 0;
     public float speed= 5.0f;
+
+    public Text keyAmount;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +42,8 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.tag== "Keys")
         {
+            keys++;
+            keyAmount.text= "Keys: "+keys;
             Destroy(collision.gameObject);
         }
         if(collision.gameObject.tag== "Enemies")

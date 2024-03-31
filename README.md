@@ -1,4 +1,4 @@
 # Maze-Game-of-Tun
 Tớ làm một con mazegame đơn giản thôi nhưng mà cũng khó chơi phết đó 🐵
-![Databrck project with SnowfLake](Assets\Image\demogame.jpg)
+![Databrck project with SnowfLake](demogame.jpg)
 

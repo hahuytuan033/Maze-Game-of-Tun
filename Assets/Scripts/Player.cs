@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public static int keys= 0;
-    public float speed= 5.0f;
-
+    public static int keys = 0;
+    public float speed = 5.0f;
+    public GameObject door;
     public Text keyAmount;
+    public Text youWin;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,55 +22,63 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             transform.Translate(-speed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.Translate(speed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             transform.Translate(0, speed * Time.deltaTime, 0);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             transform.Translate(0, -speed * Time.deltaTime, 0);
         }
+        if(keys>= 6)
+        {
+            Destroy(door);
+        }
     }
 
-    private void OnCollisionEnter2D (Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag== "Keys")
+        if (collision.gameObject.tag == "Keys")
         {
             keys++;
-            keyAmount.text= "Keys: "+keys;
+            keyAmount.text = "Keys: " + keys;
             Destroy(collision.gameObject);
         }
-        if(collision.gameObject.tag== "Enemies")
+        if (collision.gameObject.tag == "Princess")
+        {
+            youWin.text = "YOU WIN!!!";
+        }
+        if (collision.gameObject.tag == "Enemies")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         //nhảy ra khỏi tường
-        if(collision.gameObject.tag== "Wall")
+        if (collision.gameObject.tag == "Wall")
         {
             if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Translate(speed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Translate(-speed * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            transform.Translate(0, -speed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(0, speed * Time.deltaTime, 0);
-        }
+            {
+                transform.Translate(speed * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                transform.Translate(-speed * Time.deltaTime, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                transform.Translate(0, -speed * Time.deltaTime, 0);
+            }
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                transform.Translate(0, speed * Time.deltaTime, 0);
+            }
         }
     }
 }
